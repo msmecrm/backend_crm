@@ -21,7 +21,7 @@ import java.util.List;
 public class CRMUsers implements UserDetails {
     @Id
     @Column
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
     @Column
     private Integer employeeID;
