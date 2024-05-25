@@ -1,11 +1,11 @@
-FROM eclipse-temurin:17-jdk-jammy
- 
+# Use the official OpenJDK 17 image as the base image
+FROM openjdk:17-jdk-slim
+
+# Set the working directory in the container
 WORKDIR /app
- 
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
- 
-COPY src ./src
- 
-CMD [&amp;quot;./mvnw&amp;quot;, &amp;quot;spring-boot:run&amp;quot;]
+
+# Copy the built JAR file into the container
+COPY src/test/crm-0.0.1-SNAPSHOT.jar crm.jar
+
+# Specify the command to run the JAR file
+ENTRYPOINT ["java", "-jar", "crm.jar"]
