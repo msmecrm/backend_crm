@@ -5,22 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65ce6c9d-51d2-4a51-852c-bec26f55d313" name="Changes" comment="Regist">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/ApplicationConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/controller/MenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/CrmRoleDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/ScreenDefinitonDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/CRMRoles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/ScreenDefinition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmRoleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmScreenDefinitionRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/service/MenuMaintenanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/AuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/AuthenticationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/CRMUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/CRMUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/CrmRole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/service/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/msme/crm/CrmApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/msme/crm/CrmApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/crm-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/crm-0.0.1-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
