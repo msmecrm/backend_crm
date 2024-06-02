@@ -2,6 +2,7 @@ package com.msme.crm.security.configuration;
 
 import com.msme.crm.security.repository.CrmUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -18,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfiguration {
-
 
     private final CrmUserRepository userRepository ;
 

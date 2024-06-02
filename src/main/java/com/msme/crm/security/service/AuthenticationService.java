@@ -1,24 +1,22 @@
 package com.msme.crm.security.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.msme.crm.security.dao.AuthenticationRequest;
 import com.msme.crm.security.dao.AuthenticationResponse;
 import com.msme.crm.security.dao.RegisterRequest;
+import com.msme.crm.security.entities.CRMRoles;
 import com.msme.crm.security.entities.CRMUsers;
-import com.msme.crm.security.entities.CrmRole;
+import com.msme.crm.security.repository.CrmRoleRepository;
 import com.msme.crm.security.repository.CrmUserRepository;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.val;
-import org.springframework.http.HttpHeaders;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,21 +25,27 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final MenuMaintenanceService menuMaintenanceService;
+    private final ModelMapper modelMapper;
+    private final CrmRoleRepository crmRoleRepository;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        val role = request.getRole();
+        var roles = request.getRolesList();
+        System.out.println(request);
+       List<CRMRoles> rolelist= roles.stream().map(a-> crmRoleRepository.findByRoleName(a.getRoleName()).get()).toList();
         var user = CRMUsers.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .crmRole(CrmRole.ADMIN)
+                .crmRoles(rolelist)
                 .userStatus(true)
                 .build();
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .screenAccesList(menuMaintenanceService.getSceenAvalibleToUser(user))
                 .build();
     }
 
@@ -55,8 +59,11 @@ public class AuthenticationService {
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
+
+        var screenAccessist = menuMaintenanceService.getSceenAvalibleToUser(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .screenAccesList(menuMaintenanceService.getSceenAvalibleToUser(user))
                 .build();
     }
 

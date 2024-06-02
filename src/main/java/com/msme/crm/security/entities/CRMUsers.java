@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Builder
@@ -19,6 +20,7 @@ import java.util.List;
 @Entity
 @Table(name="CRM_USERS")
 public class CRMUsers implements UserDetails {
+
     @Id
     @Column
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -44,19 +46,33 @@ public class CRMUsers implements UserDetails {
     @Column
     private boolean userStatus;
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    CrmRole crmRole;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST })
+    @JoinTable(name = "CRMUSER_ROLE_MAPPING", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "roleid"))
+    List<CRMRoles> crmRoles;
 
-
+    @Override
+    public String toString() {
+        return "CRMUsers{" +
+                "id=" + id +
+                ", employeeID=" + employeeID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", photo='" + photo + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", landingPage='" + landingPage + '\'' +
+                ", ManagerID=" + ManagerID +
+                ", userStatus=" + userStatus +
+                ", crmRoles=" + crmRoles +
+                '}';
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(crmRole.name()));
-    }
-
-    public String getPassword() {
-        return password;
+        return crmRoles.stream().map((a)-> new SimpleGrantedAuthority(a.getRoleid().toString())).collect(Collectors.toList());
+       // return List.of(new SimpleGrantedAuthority(crmRole.name()));
     }
 
     @Override
