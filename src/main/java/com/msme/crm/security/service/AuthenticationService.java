@@ -60,7 +60,7 @@ public class AuthenticationService {
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
 
-        var screenAccessist = menuMaintenanceService.getSceenAvalibleToUser(user);
+        //var screenAccessist = menuMaintenanceService.getSceenAvalibleToUser(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .screenAccesList(menuMaintenanceService.getSceenAvalibleToUser(user))
