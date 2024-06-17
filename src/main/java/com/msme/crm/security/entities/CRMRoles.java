@@ -17,7 +17,7 @@ public class CRMRoles {
     @Column
     private String roleDescription;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE})
     @JoinTable(name = "CRMROLE_SCREEN_MAPPING", joinColumns = @JoinColumn(name = "roleID"),
             inverseJoinColumns = @JoinColumn(name = "screenId"))
     private List<ScreenDefinition> screenIds;
