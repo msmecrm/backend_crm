@@ -20,14 +20,14 @@ public class ScreenDefinition {
     @Column
     private String parentId;
     @Column
-    private Boolean viewRecord;
+    private Boolean viewRecord = false;
     @Column
-    private Boolean CreateRecord;
+    private Boolean CreateRecord= false;
     @Column
-    private Boolean editRecord;
+    private Boolean editRecord=false;
 
     @Column
-    private Boolean deleteRecord;
+    private Boolean deleteRecord=false;
 
     public Integer getScreenId() {
         return screenId;

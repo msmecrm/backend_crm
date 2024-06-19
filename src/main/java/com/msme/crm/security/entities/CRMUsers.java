@@ -46,7 +46,7 @@ public class CRMUsers implements UserDetails {
     @Column
     private boolean userStatus;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST })
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
     @JoinTable(name = "CRMUSER_ROLE_MAPPING", joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "roleid"))
     List<CRMRoles> crmRoles;
