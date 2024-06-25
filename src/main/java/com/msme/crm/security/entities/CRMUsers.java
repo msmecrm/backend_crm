@@ -71,7 +71,7 @@ public class CRMUsers implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return crmRoles.stream().map((a)-> new SimpleGrantedAuthority(a.getRoleid().toString())).collect(Collectors.toList());
+        return null;
        // return List.of(new SimpleGrantedAuthority(crmRole.name()));
     }
 

@@ -1,6 +1,7 @@
 package com.msme.crm.security.configuration;
 
 
+import com.msme.crm.security.repository.CrmRoleCustomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +29,7 @@ public class WebSecurtiyConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
-
+    private final CRMAuthorizationManager crmAuthorizationManager;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -41,9 +42,8 @@ public class WebSecurtiyConfiguration {
                                         "/api/v1/auth/**"
                                 )
                                 .permitAll()
-                                .anyRequest()
-                                .authenticated()
-                )
+                                .anyRequest().access(crmAuthorizationManager)
+                        )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
