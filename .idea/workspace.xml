@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65ce6c9d-51d2-4a51-852c-bec26f55d313" name="Changes" comment="Regist">
+    <list default="true" id="ed5af476-2519-4694-8bbe-e7d00c49466d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/controller/CRMCoreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/entities/ListOfValueEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/IListResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/dao/ListofValueGenericDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/repository/ListOfValueQueryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/repository/ListOfValuesRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/service/ListOfValuesService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/CRMUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/CRMUsers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/crm-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/crm-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/CRMAuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/CRMAuthorizationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/WebSecurtiyConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/WebSecurtiyConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +24,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -24,32 +32,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;msmecrm&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/msmecrm/backend_crm.git&quot;,
-    &quot;accountId&quot;: &quot;d75d3564-f0e9-42cf-88e1-787cca9dc32a&quot;
-  }
-}</component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="2gRGW6pn7OtX1lJnNCudKwXTqrJ" />
+  <component name="ProjectId" id="2ie90CE7tcresnGEk4QBTWoXBMO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -57,29 +44,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.CrmApplication.executor": "Run",
-    "Maven.crm [clean].executor": "Run",
-    "Maven.crm [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "AuthorizationManager",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/work/MSMECRM/crm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.msme.crm.security.service" />
-      <recent name="com.msme.crm.security.repository" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.msme.crm.security.entities" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.CrmApplication">
+}]]></component>
+  <component name="RunManager">
     <configuration name="CrmApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.msme.crm.CrmApplication" />
       <module name="crm" />
@@ -93,125 +63,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="crm [clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="clean" />
-              </list>
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <configuration name="crm [install]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="install" />
-              </list>
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CrmApplication" />
-        <item itemvalue="Maven.crm [install]" />
-        <item itemvalue="Maven.crm [clean]" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="65ce6c9d-51d2-4a51-852c-bec26f55d313" name="Changes" comment="" />
-      <created>1715653005680</created>
+      <changelist id="ed5af476-2519-4694-8bbe-e7d00c49466d" name="Changes" comment="" />
+      <created>1719839956251</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1715653005680</updated>
+      <updated>1719839956251</updated>
     </task>
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmRoleCustomRepository.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmRoleCustomRepository.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/CRMAuthorizationManager.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/WebSecurtiyConfiguration.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <pin-to-top-manager>
-      <pinned-members>
-        <PinnedItemInfo parentTag="com.msme.crm.security.entities.CRMUsers" memberName="password" />
-      </pinned-members>
-    </pin-to-top-manager>
   </component>
 </project>

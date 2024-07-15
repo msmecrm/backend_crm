@@ -38,14 +38,21 @@ public class CRMAuthorizationManager implements AuthorizationManager<RequestAuth
     @Override
     public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext object)
     {
+        System.out.println("inside check ");
+        String requestUrl = object.getRequest().getRequestURI();
+        String accessType =  object.getRequest().getMethod();
+
+        System.out.println("requestUrl "+ requestUrl);
+        System.out.println("accessType "+ accessType);
+
+        if(requestUrl.contains("crmCore")|| requestUrl.contains("error"))
+            return new AuthorizationDecision(true);
+
 
         UserDetails userDetails = (CRMUsers)authentication.get().getPrincipal();
         String userName = userDetails.getUsername();
-        String requestUrl = object.getRequest().getRequestURI();
-        String accessType =  object.getRequest().getMethod();
         System.out.println("userName "+userName);
-        System.out.println("requestUrl "+ requestUrl);
-        System.out.println("accessType "+ accessType);
+
         int lastBackSlashPosition = requestUrl.lastIndexOf("/");
 
         String ScreenName = requestUrl.substring(lastBackSlashPosition + 1);
