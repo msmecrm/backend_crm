@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/crmCore")
@@ -20,10 +21,13 @@ public class CRMCoreController {
     }
 
     @GetMapping("/getLOVDetails/{lovName}")
-    public ResponseEntity getListOfValues(@PathVariable String lovName, @RequestBody List<String> inputfields) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public ResponseEntity getListOfValues(@PathVariable String lovName, @RequestParam List<String> inputfields) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         // inputfields
-        System.out.println(inputfields);
-        return  ResponseEntity.ok(listOfValuesService.processLOVRequest(lovName, inputfields));
+        List<String> processedInputFields = inputfields.stream()
+                .map(field -> field.isEmpty() ? null : field)
+                .collect(Collectors.toList());
+        System.out.println(processedInputFields);
+        return  ResponseEntity.ok(listOfValuesService.processLOVRequest(lovName, processedInputFields));
 
 
     }
