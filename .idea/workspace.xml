@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed5af476-2519-4694-8bbe-e7d00c49466d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/dao/CRMPropertiesDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/entities/CRMProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/repository/CRMPropertiesRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/CrmUserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/dao/ListofValueGenericDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/dao/ListofValueGenericDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/controller/CRMCoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/controller/CRMCoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/dao/ListofValueGenericDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/dao/ListofValueGenericDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/repository/ListOfValueQueryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/repository/ListOfValueQueryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/repository/ListOfValuesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/repository/ListOfValuesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/listOfValues/service/ListOfValuesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/core/service/ListOfValuesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/CRMAuthorizationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/CRMAuthorizationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/WebSecurtiyConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/WebSecurtiyConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmRoleCustomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmRoleCustomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/service/MenuMaintenanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/service/MenuMaintenanceService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,14 +46,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CrmApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CrmApplication.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="CrmApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.msme.crm.CrmApplication" />
@@ -71,5 +84,32 @@
       <updated>1719839956251</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/WebSecurtiyConfiguration.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmRoleCustomRepository.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/CRMAuthorizationManager.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/com/msme/crm/security/configuration/CRMAuthorizationManager.java</url>
+          <line>31</line>
+          <properties field="customRolRepository" class="com.msme.crm.security.configuration.CRMAuthorizationManager" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

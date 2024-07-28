@@ -1,12 +1,9 @@
-package com.msme.crm.core.listOfValues.dao;
+package com.msme.crm.core.dao;
 
 import com.msme.crm.core.listOfValues.IListResult;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Date;
-import java.util.List;
 
 public class ListofValueGenericDao implements IListResult {
 

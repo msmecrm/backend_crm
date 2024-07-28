@@ -1,4 +1,4 @@
-package com.msme.crm.core.listOfValues.repository;
+package com.msme.crm.core.repository;
 
 import com.msme.crm.core.entities.ListOfValueEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

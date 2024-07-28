@@ -1,6 +1,7 @@
 package com.msme.crm.security.service;
 
 import com.msme.crm.security.dao.CrmRoleDao;
+import com.msme.crm.security.dao.CrmUserDao;
 import com.msme.crm.security.dao.ScreenDefinitonDao;
 import com.msme.crm.security.entities.CRMUsers;
 import com.msme.crm.security.entities.ScreenDefinition;
@@ -55,4 +56,22 @@ public class MenuMaintenanceService {
         System.out.println("roles "+roles);
         return roles.stream().map(a ->modelMapper.map(a,CrmRoleDao.class)).collect(Collectors.toList());
     }
+
+
+    public CrmUserDao createUser(CrmUserDao userDao)
+    {
+       CRMUsers user = modelMapper.map(userDao,CRMUsers.class);
+        return modelMapper.map(crmUserRepository.save(user),CrmUserDao.class);
+    }
+
+    public List<CrmUserDao> getAllUsers(){
+        List<CrmUserDao> userList = crmUserRepository.findAll().stream().map((inputUser) -> modelMapper.map(inputUser,CrmUserDao.class)).toList();
+        return userList;
+    }
+
+    public CrmUserDao getUser(Integer userId){
+        return modelMapper.map(crmUserRepository.getReferenceById(userId),CrmUserDao.class);
+    }
+
+
 }

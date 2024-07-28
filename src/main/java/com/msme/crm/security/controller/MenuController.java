@@ -1,8 +1,9 @@
 package com.msme.crm.security.controller;
 
-import com.msme.crm.security.dao.CrmRoleDao;
-import com.msme.crm.security.dao.ScreenDefinitonDao;
+import com.msme.crm.security.dao.*;
+import com.msme.crm.security.service.AuthenticationService;
 import com.msme.crm.security.service.MenuMaintenanceService;
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 public class MenuController {
     @Autowired
     private MenuMaintenanceService menuMaintenance;
+
+    @Autowired
+    private AuthenticationService authenticationService;
 
     @PostMapping("/createRole")
     public ResponseEntity<CrmRoleDao> createrole(@RequestBody CrmRoleDao request)
@@ -25,7 +29,20 @@ public class MenuController {
         return ResponseEntity.ok(menuMaintenance.createScreenDefiniton(screenDefinitonDao));
     }
 
+    @PostMapping("/UserManagementScreen")
+    public ResponseEntity<CrmUserDao> createUser(@RequestBody CrmUserDao crmUserDao){
+        return ResponseEntity.ok(menuMaintenance.createUser(crmUserDao)) ;
+    }
 
+    @GetMapping(value= {"/UserManagementScreen"})
+    public ResponseEntity<?> fetchallUser(){
+        return ResponseEntity.ok(( menuMaintenance.getAllUsers()));
+    }
+
+    @GetMapping(value= {"/UserManagementScreen/{userid}"})
+    public ResponseEntity<CrmUserDao> fetchUser(@PathVariable Integer userid){
+        return ResponseEntity.ok(menuMaintenance.getUser(userid)) ;
+    }
 
     @GetMapping("/getRoleDetails")
     public ResponseEntity<CrmRoleDao> getRoleDetails(@RequestBody String roleName)

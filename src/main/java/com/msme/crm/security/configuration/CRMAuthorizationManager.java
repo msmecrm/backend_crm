@@ -1,5 +1,8 @@
 package com.msme.crm.security.configuration;
 
+import com.msme.crm.core.dao.CRMPropertiesDao;
+import com.msme.crm.core.entities.CRMProperties;
+import com.msme.crm.core.repository.CRMPropertiesRepository;
 import com.msme.crm.security.dao.CrmRoleDao;
 import com.msme.crm.security.entities.CRMRoles;
 import com.msme.crm.security.entities.CRMUsers;
@@ -17,21 +20,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.net.http.HttpHeaders;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.Comparator.comparingInt;
 
 
 @Service
 public class CRMAuthorizationManager implements AuthorizationManager<RequestAuthorizationContext> {
 
     private final CrmRoleCustomRepository customRolRepository;
+    private final CRMPropertiesRepository crmPropertiesRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public CRMAuthorizationManager(CrmRoleCustomRepository customRolRepository) {
+    public CRMAuthorizationManager(CrmRoleCustomRepository customRolRepository, CRMPropertiesRepository crmPropertiesRepository, ModelMapper modelMapper) {
         this.customRolRepository = customRolRepository;
+        this.crmPropertiesRepository = crmPropertiesRepository;
+        this.modelMapper = modelMapper;
     }
 
 
@@ -45,7 +51,28 @@ public class CRMAuthorizationManager implements AuthorizationManager<RequestAuth
         System.out.println("requestUrl "+ requestUrl);
         System.out.println("accessType "+ accessType);
 
-        if(requestUrl.contains("crmCore")|| requestUrl.contains("error"))
+        List<CRMProperties> crmProperties = crmPropertiesRepository.findAll();
+        List<CRMPropertiesDao> crmPropertiesDaoList = new ArrayList<>(crmProperties.stream()
+                .filter((a) -> a.getType().equalsIgnoreCase("CONTROLLER"))
+                .map((a) -> modelMapper.map(a, CRMPropertiesDao.class))
+                .toList());
+
+        Collections.sort(crmPropertiesDaoList);
+        boolean isRestricted= true;
+
+        for(CRMPropertiesDao crmPropertiesDao : crmPropertiesDaoList)
+        {
+            if(requestUrl.contains(crmPropertiesDao.getName())){
+
+                if(!crmPropertiesDao.getValue().equalsIgnoreCase("RESTRICTED")) {
+                    isRestricted = false;
+                }
+             requestUrl = requestUrl.replace(crmPropertiesDao.getName(),"");
+             break;
+            }
+        }
+
+        if(!isRestricted|| requestUrl.contains("error"))
             return new AuthorizationDecision(true);
 
 
@@ -53,9 +80,19 @@ public class CRMAuthorizationManager implements AuthorizationManager<RequestAuth
         String userName = userDetails.getUsername();
         System.out.println("userName "+userName);
 
-        int lastBackSlashPosition = requestUrl.lastIndexOf("/");
+        System.out.println( "Finally requestUrl "+ requestUrl);
+        int lastBackSlashPosition = requestUrl.indexOf("/");
+        System.out.println( "lastBackSlashPosition is "+ lastBackSlashPosition);
 
-        String ScreenName = requestUrl.substring(lastBackSlashPosition + 1);
+        String ScreenName = requestUrl;
+
+        if(lastBackSlashPosition>0)
+        {
+         ScreenName = requestUrl.substring(0,lastBackSlashPosition);
+        }
+
+
+        System.out.println( "Finally derived screen name is "+ ScreenName);
         return new AuthorizationDecision(customRolRepository.findUserAccessToScreen(ScreenName,userName,accessType));
     }
 }

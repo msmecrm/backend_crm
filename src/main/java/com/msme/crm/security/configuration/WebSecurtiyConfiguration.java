@@ -39,7 +39,7 @@ public class WebSecurtiyConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(
-                                        "/api/v1/auth/**","/crmCore/**"
+                                        "/api/v1/auth/authenticate"
                                 )
                                 .permitAll()
                                 .anyRequest().access(crmAuthorizationManager)

@@ -50,6 +50,6 @@ public class CrmRoleCustomRepository {
 
         Long retunedvalues = (Long)screenAccessQuery.getSingleResult();
         System.out.println("returned Values "+retunedvalues);
-        return retunedvalues>0L;
+        return retunedvalues.intValue() > 0;
     }
 }

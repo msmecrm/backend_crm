@@ -1,4 +1,4 @@
-package com.msme.crm.core.listOfValues.repository;
+package com.msme.crm.core.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

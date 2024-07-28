@@ -1,9 +1,9 @@
-package com.msme.crm.core.listOfValues.service;
+package com.msme.crm.core.service;
 
 import com.msme.crm.core.entities.ListOfValueEntity;
 import com.msme.crm.core.listOfValues.IListResult;
-import com.msme.crm.core.listOfValues.repository.ListOfValueQueryRepository;
-import com.msme.crm.core.listOfValues.repository.ListOfValuesRepository;
+import com.msme.crm.core.repository.ListOfValueQueryRepository;
+import com.msme.crm.core.repository.ListOfValuesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +40,7 @@ public class ListOfValuesService {
 
      for(int idx =0; idx< fieldValues.size(); idx++)
         {
-            String objectName =  lovqueryResult.get().getDaoClassName() != null ? lovqueryResult.get().getDaoClassName() : "com.msme.crm.core.listOfValues.dao.ListofValueGenericDao";
+            String objectName =  lovqueryResult.get().getDaoClassName() != null ? lovqueryResult.get().getDaoClassName() : "com.msme.crm.core.dao.ListofValueGenericDao";
             IListResult lovDaoValue = null;
             try {
                 lovDaoValue = (IListResult)Class.forName(objectName)

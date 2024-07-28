@@ -1,13 +1,11 @@
 package com.msme.crm.core.controller;
 
-import com.msme.crm.core.listOfValues.IListResult;
-import com.msme.crm.core.listOfValues.service.ListOfValuesService;
+import com.msme.crm.core.service.ListOfValuesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
