@@ -34,6 +34,11 @@ public class MenuController {
         return ResponseEntity.ok(menuMaintenance.createUser(crmUserDao)) ;
     }
 
+    @PutMapping("/UserManagementScreen")
+    public ResponseEntity<CrmUserDao> UpdateUser(@RequestBody CrmUserDao crmUserDao){
+        return ResponseEntity.ok(menuMaintenance.UpdateUser(crmUserDao)) ;
+    }
+
     @GetMapping(value= {"/UserManagementScreen"})
     public ResponseEntity<?> fetchallUser(){
         return ResponseEntity.ok(( menuMaintenance.getAllUsers()));

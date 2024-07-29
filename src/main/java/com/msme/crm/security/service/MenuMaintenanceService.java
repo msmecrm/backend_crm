@@ -13,6 +13,7 @@ import com.msme.crm.security.entities.CRMRoles;
 import org.springframework.stereotype.Service;
 import  com.msme.crm.security.repository.CrmUserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,16 +62,33 @@ public class MenuMaintenanceService {
     public CrmUserDao createUser(CrmUserDao userDao)
     {
        CRMUsers user = modelMapper.map(userDao,CRMUsers.class);
-        return modelMapper.map(crmUserRepository.save(user),CrmUserDao.class);
+        CrmUserDao crmUserDao = modelMapper.map(crmUserRepository.save(user),CrmUserDao.class);
+        crmUserDao.setPassword("");
+        return crmUserDao;
     }
 
     public List<CrmUserDao> getAllUsers(){
-        List<CrmUserDao> userList = crmUserRepository.findAll().stream().map((inputUser) -> modelMapper.map(inputUser,CrmUserDao.class)).toList();
-        return userList;
+        List<CrmUserDao> crmUserDaoList = new ArrayList<>();
+          for(CRMUsers users:crmUserRepository.findAll())
+            {
+                  CrmUserDao crmUserDao = modelMapper.map(users,CrmUserDao.class);
+                  crmUserDao.setPassword("");
+                  crmUserDaoList.add(crmUserDao);
+            }
+      //  List<CrmUserDao> userList = crmUserRepository.findAll().stream().map((inputUser) -> modelMapper.map(inputUser,CrmUserDao.class)).toList();
+        return crmUserDaoList;
     }
 
     public CrmUserDao getUser(Integer userId){
         return modelMapper.map(crmUserRepository.getReferenceById(userId),CrmUserDao.class);
+    }
+
+    public CrmUserDao UpdateUser(CrmUserDao userDao)
+    {
+        CRMUsers user = modelMapper.map(userDao,CRMUsers.class);
+        CrmUserDao crmUserDao = modelMapper.map(crmUserRepository.save(user),CrmUserDao.class);
+        crmUserDao.setPassword("");
+        return crmUserDao;
     }
 
 
