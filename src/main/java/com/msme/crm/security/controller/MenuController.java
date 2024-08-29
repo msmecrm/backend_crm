@@ -17,10 +17,27 @@ public class MenuController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    @PostMapping("/createRole")
+    @PostMapping("/RoleManagementScreen")
     public ResponseEntity<CrmRoleDao> createrole(@RequestBody CrmRoleDao request)
     {
         return ResponseEntity.ok(menuMaintenance.createRoleDefiniton(request));
+    }
+
+    @PutMapping("/RoleManagementScreen")
+    public ResponseEntity<CrmRoleDao> editrole(@RequestBody CrmRoleDao request)
+    {
+        return ResponseEntity.ok(menuMaintenance.createRoleDefiniton(request));
+    }
+
+    @GetMapping("/RoleManagementScreen/{roleName}")
+    public ResponseEntity<CrmRoleDao> getrole(@PathVariable String roleName)
+    {
+        return ResponseEntity.ok(menuMaintenance.getRoleDefiniton(roleName));
+    }
+
+    @GetMapping(value= {"/RoleManagementScreen"})
+    public ResponseEntity<?> fetchallRoles(){
+        return ResponseEntity.ok(( menuMaintenance.getAllRoles()));
     }
 
     @PostMapping("/createScreenDefintion")

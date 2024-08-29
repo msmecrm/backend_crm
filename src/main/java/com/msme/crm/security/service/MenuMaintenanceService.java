@@ -34,6 +34,13 @@ public class MenuMaintenanceService {
        return modelMapper.map(crmRoleRepository.save(crmRole),CrmRoleDao.class);
     }
 
+    public CrmRoleDao editRole(CrmRoleDao crmRoleDao) {
+            CRMRoles crmRole = crmRoleRepository.findByRoleName(crmRoleDao.getRoleName()).get();
+            crmRole.setRoleDescription(crmRoleDao.getRoleDescription());
+            crmRole.setScreenIds(crmRoleDao.getScreenIds());
+            return modelMapper.map(crmRoleRepository.save(crmRole),CrmRoleDao.class);
+    }
+
     public ScreenDefinitonDao createScreenDefiniton(ScreenDefinitonDao screenDefinitonDao) {
         ScreenDefinition screenDefinition = modelMapper.map(screenDefinitonDao,ScreenDefinition.class);
         return modelMapper.map(crmScreenDefinitionRepository.save(screenDefinition),ScreenDefinitonDao.class);
@@ -42,6 +49,11 @@ public class MenuMaintenanceService {
 
     public CrmRoleDao getRoleDefiniton(String roleName) {
        return modelMapper.map(crmRoleRepository.findByRoleName(roleName).get(),CrmRoleDao.class);
+    }
+
+    public List<CrmRoleDao> getAllRoles(){
+        return crmRoleRepository.findAll().stream().map((inputRole) -> modelMapper.map(inputRole,CrmRoleDao.class)).toList();
+
     }
 
     public ScreenDefinitonDao getScreenDefiniton(String screenName) {
@@ -85,7 +97,18 @@ public class MenuMaintenanceService {
 
     public CrmUserDao UpdateUser(CrmUserDao userDao)
     {
-        CRMUsers user = modelMapper.map(userDao,CRMUsers.class);
+        CRMUsers user = crmUserRepository.getReferenceById(userDao.getId());
+        CRMUsers incomingDetails =  modelMapper.map(userDao,CRMUsers.class);
+        user.setCrmRoles(incomingDetails.getCrmRoles());
+        user.setFirstName(incomingDetails.getFirstName());
+        user.setPassword(incomingDetails.getPassword());
+        user.setFirstName(incomingDetails.getFirstName());
+        user.setLastName(incomingDetails.getLastName());
+        user.setEmployeeID(incomingDetails.getEmployeeID());
+        user.setEmail(incomingDetails.getEmail());
+        user.setUserStatus(incomingDetails.isUserStatus());
+        user.setLandingPage(incomingDetails.getLandingPage());
+        user.setManagerID(incomingDetails.getManagerID());
         CrmUserDao crmUserDao = modelMapper.map(crmUserRepository.save(user),CrmUserDao.class);
         crmUserDao.setPassword("");
         return crmUserDao;
