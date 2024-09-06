@@ -2,6 +2,7 @@ package com.msme.crm.security.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,7 @@ public class ScreenDefinition {
 
     @Column
     private Boolean deleteRecord=false;
+
 
     public Integer getScreenId() {
         return screenId;

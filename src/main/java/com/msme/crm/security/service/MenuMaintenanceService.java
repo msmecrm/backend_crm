@@ -3,10 +3,13 @@ package com.msme.crm.security.service;
 import com.msme.crm.security.dao.CrmRoleDao;
 import com.msme.crm.security.dao.CrmUserDao;
 import com.msme.crm.security.dao.ScreenDefinitonDao;
+import com.msme.crm.security.dao.crmRoleScreenMappingDao;
 import com.msme.crm.security.entities.CRMUsers;
 import com.msme.crm.security.entities.ScreenDefinition;
+import com.msme.crm.security.entities.crmRoleScreenMapping;
 import com.msme.crm.security.repository.CrmRoleRepository;
 import com.msme.crm.security.repository.CrmScreenDefinitionRepository;
+import com.msme.crm.security.repository.crmRoleScreenMappingRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.msme.crm.security.entities.CRMRoles;
@@ -28,16 +31,35 @@ public class MenuMaintenanceService {
     @Autowired
     private  CrmUserRepository crmUserRepository;
 
+    @Autowired
+    private crmRoleScreenMappingRepository crmRoleScreenMappingRepository;
+
 
     public CrmRoleDao createRoleDefiniton(CrmRoleDao crmRoleDao) {
        CRMRoles crmRole = modelMapper.map(crmRoleDao, CRMRoles.class);
-       return modelMapper.map(crmRoleRepository.save(crmRole),CrmRoleDao.class);
+       crmRoleRepository.save(crmRole);
+       if(crmRoleDao.getScreenAccess().size()>0){
+           Integer roleId = crmRole.getRoleid();
+           for(int idx= 0; idx< crmRoleDao.getScreenAccess().size(); idx++){
+               crmRoleScreenMappingDao crmRoleScreenMappingDao = crmRoleDao.getScreenAccess().get(idx);
+               crmRoleScreenMapping crmRoleScreenMapEntity = new crmRoleScreenMapping();
+               crmRoleScreenMapEntity.setRoleId(roleId);
+               crmRoleScreenMapEntity.setScreenId(crmRoleScreenMappingDao.getScreenId());
+               crmRoleScreenMapEntity.setDeleteRecord(crmRoleScreenMappingDao.getDeleteRecord());
+               crmRoleScreenMapEntity.setEditRecord(crmRoleScreenMappingDao.getEditRecord());
+               crmRoleScreenMapEntity.setViewRecord(crmRoleScreenMappingDao.getViewRecord());
+               crmRoleScreenMapEntity.setCreateRecord(crmRoleScreenMappingDao.getCreateRecord());
+               crmRoleScreenMappingRepository.save(crmRoleScreenMapEntity);
+           }
+       }
+        crmRoleDao.setRoleID(crmRole.getRoleid());
+       return crmRoleDao;
     }
 
     public CrmRoleDao editRole(CrmRoleDao crmRoleDao) {
             CRMRoles crmRole = crmRoleRepository.findByRoleName(crmRoleDao.getRoleName()).get();
-            crmRole.setRoleDescription(crmRoleDao.getRoleDescription());
-            crmRole.setScreenIds(crmRoleDao.getScreenIds());
+             crmRole.setRoleDescription(crmRoleDao.getRoleDescription());
+            //crmRole.se(crmRoleDao.getScreenIds());
             return modelMapper.map(crmRoleRepository.save(crmRole),CrmRoleDao.class);
     }
 

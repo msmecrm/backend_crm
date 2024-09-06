@@ -2,6 +2,7 @@ package com.msme.crm.security.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,11 +17,6 @@ public class CRMRoles {
     private String roleName;
     @Column
     private String roleDescription;
-
-    @OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE})
-    @JoinTable(name = "CRMROLE_SCREEN_MAPPING", joinColumns = @JoinColumn(name = "roleID"),
-            inverseJoinColumns = @JoinColumn(name = "screenId"))
-    private List<ScreenDefinition> screenIds;
 
     public Integer getRoleid() {
         return roleid;
@@ -46,13 +42,6 @@ public class CRMRoles {
         this.roleDescription = roleDescription;
     }
 
-    public List<ScreenDefinition> getScreenIds() {
-        return screenIds;
-    }
-
-    public void setScreenIds(List<ScreenDefinition> screenIds) {
-        this.screenIds = screenIds;
-    }
 
     @Override
     public String toString() {
@@ -60,7 +49,7 @@ public class CRMRoles {
                 "roleid=" + roleid +
                 ", roleName='" + roleName + '\'' +
                 ", roleDescription='" + roleDescription + '\'' +
-                ", screenIds=" + screenIds +
+
                 '}';
     }
 }

@@ -8,7 +8,7 @@ public class CrmRoleDao {
     private String roleName;
     private String roleDescription;
     private  Integer roleID;
-    private List<ScreenDefinition> screenIds;
+    private List<crmRoleScreenMappingDao> screenAccess;
 
 
     public Integer getRoleID() {
@@ -19,14 +19,12 @@ public class CrmRoleDao {
         this.roleID = roleID;
     }
 
-    public List<ScreenDefinition> getScreenIds() {
-        return screenIds;
+    public List<crmRoleScreenMappingDao> getScreenAccess() {
+        return screenAccess;
     }
 
-
-
-    public void setScreenIds(List<ScreenDefinition> screenIds) {
-        this.screenIds = screenIds;
+    public void setScreenAccess(List<crmRoleScreenMappingDao> screenAccess) {
+        this.screenAccess = screenAccess;
     }
 
     public String getRoleDescription() {
@@ -51,7 +49,6 @@ public class CrmRoleDao {
                 "roleName='" + roleName + '\'' +
                 ", roleDescription='" + roleDescription + '\'' +
                 ", roleID=" + roleID +
-                ", screenIds=" + screenIds +
                 '}';
     }
 }

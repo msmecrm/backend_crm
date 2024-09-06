@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed5af476-2519-4694-8bbe-e7d00c49466d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/crmRoleScreenMappingDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/crmRoleScreenMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/crmRoleScreenMappingRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/CrmRoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/dao/CrmRoleDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/CRMRoles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/CRMRoles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/ScreenDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/entities/ScreenDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmRoleCustomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmRoleCustomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/repository/CrmUserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/service/MenuMaintenanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/msme/crm/security/service/MenuMaintenanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/msme/crm/CrmApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/crm-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/crm-0.0.1-SNAPSHOT.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,15 +43,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CrmApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "F:/Learning/Git/Junit"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CrmApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.crm [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.crm [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;OnetoManyCRMRole&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/Learning/JPA/hibernatetest/hibernatetest&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="CrmApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.msme.crm.CrmApplication" />

@@ -38,10 +38,10 @@ public class CrmRoleCustomRepository {
                                 "defaultdb.crmuser_role_mapping " +
                                 "where crmrole_screen_mapping.screen_id = screen_definition.screen_id " +
                                 "And crm_users.id = crmuser_role_mapping.id " +
-                                "And crmuser_role_mapping.roleid = crmrole_screen_mapping.roleid " +
+                                "And crmuser_role_mapping.roleid = crmrole_screen_mapping.role_id " +
                                 "And screen_name = :ScreenName " +
                                 "and email = :User  And " +
-                                authoritiesMap.get(AccessType) +" = "+1;
+                                "crmrole_screen_mapping."+authoritiesMap.get(AccessType) +" = "+1;
 
         Query screenAccessQuery =  entityManager.createNativeQuery(screenAccessQuerySql)
                                             .setParameter("ScreenName",ScreenName)
