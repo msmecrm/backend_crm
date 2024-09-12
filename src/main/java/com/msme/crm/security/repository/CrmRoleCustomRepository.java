@@ -23,7 +23,7 @@ public class CrmRoleCustomRepository {
 
         HashMap<String,String> authoritiesMap = new HashMap<>();
         authoritiesMap.put(RequestMethod.GET.toString(),"View_record");
-        authoritiesMap.put(RequestMethod.PUT.toString(),"update_record");
+        authoritiesMap.put(RequestMethod.PUT.toString(),"edit_record");
         authoritiesMap.put(RequestMethod.DELETE.toString(),"delete_record");
         authoritiesMap.put(RequestMethod.POST.toString(),"create_record");
 

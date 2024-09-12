@@ -15,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.msme.crm.security.entities.CRMRoles;
 import org.springframework.stereotype.Service;
 import  com.msme.crm.security.repository.CrmUserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class MenuMaintenanceService {
     @Autowired
     private CrmRoleRepository crmRoleRepository;
@@ -37,30 +39,41 @@ public class MenuMaintenanceService {
 
     public CrmRoleDao createRoleDefiniton(CrmRoleDao crmRoleDao) {
        CRMRoles crmRole = modelMapper.map(crmRoleDao, CRMRoles.class);
-       crmRoleRepository.save(crmRole);
-       if(crmRoleDao.getScreenAccess().size()>0){
-           Integer roleId = crmRole.getRoleid();
-           for(int idx= 0; idx< crmRoleDao.getScreenAccess().size(); idx++){
-               crmRoleScreenMappingDao crmRoleScreenMappingDao = crmRoleDao.getScreenAccess().get(idx);
-               crmRoleScreenMapping crmRoleScreenMapEntity = new crmRoleScreenMapping();
-               crmRoleScreenMapEntity.setRoleId(roleId);
-               crmRoleScreenMapEntity.setScreenId(crmRoleScreenMappingDao.getScreenId());
-               crmRoleScreenMapEntity.setDeleteRecord(crmRoleScreenMappingDao.getDeleteRecord());
-               crmRoleScreenMapEntity.setEditRecord(crmRoleScreenMappingDao.getEditRecord());
-               crmRoleScreenMapEntity.setViewRecord(crmRoleScreenMappingDao.getViewRecord());
-               crmRoleScreenMapEntity.setCreateRecord(crmRoleScreenMappingDao.getCreateRecord());
-               crmRoleScreenMappingRepository.save(crmRoleScreenMapEntity);
-           }
-       }
+        crmRoleRepository.save(crmRole);
         crmRoleDao.setRoleID(crmRole.getRoleid());
+        List<crmRoleScreenMappingDao>  crmRoleScreenMappingDaoList =populateScreenDetails(crmRoleDao);
+
+        crmRoleDao.setScreenAccess(crmRoleScreenMappingDaoList);
        return crmRoleDao;
     }
 
+    private List<crmRoleScreenMappingDao> populateScreenDetails(CrmRoleDao crmRoleDao) {
+        List<crmRoleScreenMappingDao> crmRoleScreenMappingDaoList = new ArrayList<>();
+            for(int idx = 0; idx< crmRoleDao.getScreenAccess().size(); idx++) {
+                crmRoleScreenMappingDao crmRoleScreenMappingDao = crmRoleDao.getScreenAccess().get(idx);
+                crmRoleScreenMapping crmRoleScreenMapEntity = new crmRoleScreenMapping();
+                crmRoleScreenMapEntity.setRoleId(crmRoleDao.getRoleID());
+                crmRoleScreenMapEntity.setScreenId(crmRoleScreenMappingDao.getScreenId());
+                crmRoleScreenMapEntity.setDeleteRecord(crmRoleScreenMappingDao.getDeleteRecord());
+                crmRoleScreenMapEntity.setEditRecord(crmRoleScreenMappingDao.getEditRecord());
+                crmRoleScreenMapEntity.setViewRecord(crmRoleScreenMappingDao.getViewRecord());
+                crmRoleScreenMapEntity.setCreateRecord(crmRoleScreenMappingDao.getCreateRecord());
+                crmRoleScreenMappingDao = modelMapper.map(crmRoleScreenMappingRepository.save(crmRoleScreenMapEntity),crmRoleScreenMappingDao.class);
+                crmRoleScreenMappingDaoList.add(crmRoleScreenMappingDao);
+            }
+            return crmRoleScreenMappingDaoList;
+    }
+
+
+
     public CrmRoleDao editRole(CrmRoleDao crmRoleDao) {
             CRMRoles crmRole = crmRoleRepository.findByRoleName(crmRoleDao.getRoleName()).get();
-             crmRole.setRoleDescription(crmRoleDao.getRoleDescription());
-            //crmRole.se(crmRoleDao.getScreenIds());
-            return modelMapper.map(crmRoleRepository.save(crmRole),CrmRoleDao.class);
+            crmRole.setRoleDescription(crmRoleDao.getRoleDescription());
+            crmRoleDao = modelMapper.map(crmRoleRepository.save(crmRole),CrmRoleDao.class);
+            Long totalRecordsDelete = crmRoleScreenMappingRepository.deleteByRoleId(crmRoleDao.getRoleID());
+            List<crmRoleScreenMappingDao>  crmRoleScreenMappingDaoList  = populateScreenDetails(crmRoleDao);
+            crmRoleDao.setScreenAccess(crmRoleScreenMappingDaoList);
+            return crmRoleDao;
     }
 
     public ScreenDefinitonDao createScreenDefiniton(ScreenDefinitonDao screenDefinitonDao) {
@@ -70,7 +83,9 @@ public class MenuMaintenanceService {
 
 
     public CrmRoleDao getRoleDefiniton(String roleName) {
-       return modelMapper.map(crmRoleRepository.findByRoleName(roleName).get(),CrmRoleDao.class);
+        CrmRoleDao crmRoleDao =  modelMapper.map(crmRoleRepository.findByRoleName(roleName).get(),CrmRoleDao.class);
+        crmRoleDao.setScreenAccess(fetchroleswithScreenDetails(crmRoleDao));
+        return crmRoleDao;
     }
 
     public List<CrmRoleDao> getAllRoles(){
@@ -83,13 +98,25 @@ public class MenuMaintenanceService {
     }
 
 
+    public List<crmRoleScreenMappingDao> fetchroleswithScreenDetails(CrmRoleDao crmRoleDao)
+    {
+        List<crmRoleScreenMapping>  roleScreenMappingList = crmRoleScreenMappingRepository.findByRoleId(crmRoleDao.getRoleID());
+        System.out.println("Role Id to be used is "+crmRoleDao.getRoleID());
+        System.out.println("roleScreenMappingList Id to be used is "+roleScreenMappingList);
+        List<crmRoleScreenMappingDao> crmRoleScreenMappingDaoList = roleScreenMappingList.stream().map(a ->modelMapper.map(a,crmRoleScreenMappingDao.class)).collect(Collectors.toList());
+        System.out.println("crmRoleScreenMappingDaoList Id to be used is "+crmRoleScreenMappingDaoList);
+        return crmRoleScreenMappingDaoList;
+    }
+
     public List<CrmRoleDao> getSceenAvalibleToUser(CRMUsers user) {
         System.out.println("userid "+user.getId());
         var userlocal =  crmUserRepository.getReferenceById(user.getId());
         System.out.println("role Details "+userlocal.getCrmRoles());
         List<CRMRoles> roles   =  userlocal.getCrmRoles();
         System.out.println("roles "+roles);
-        return roles.stream().map(a ->modelMapper.map(a,CrmRoleDao.class)).collect(Collectors.toList());
+        List<CrmRoleDao> roleDaos = roles.stream().map(a ->modelMapper.map(a,CrmRoleDao.class)).collect(Collectors.toList());
+        roleDaos.stream().forEach((a)-> a.setScreenAccess(fetchroleswithScreenDetails(a)));
+        return roleDaos;
     }
 
 

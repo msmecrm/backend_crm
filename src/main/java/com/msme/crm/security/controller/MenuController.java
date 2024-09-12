@@ -26,7 +26,7 @@ public class MenuController {
     @PutMapping("/RoleManagementScreen")
     public ResponseEntity<CrmRoleDao> editrole(@RequestBody CrmRoleDao request)
     {
-        return ResponseEntity.ok(menuMaintenance.createRoleDefiniton(request));
+        return ResponseEntity.ok(menuMaintenance.editRole(request));
     }
 
     @GetMapping("/RoleManagementScreen/{roleName}")
@@ -66,8 +66,8 @@ public class MenuController {
         return ResponseEntity.ok(menuMaintenance.getUser(userid)) ;
     }
 
-    @GetMapping("/getRoleDetails")
-    public ResponseEntity<CrmRoleDao> getRoleDetails(@RequestBody String roleName)
+    @GetMapping("/getRoleDetails/{roleName}")
+    public ResponseEntity<CrmRoleDao> getRoleDetails(@PathVariable String roleName)
     {
         return ResponseEntity.ok(menuMaintenance.getRoleDefiniton(roleName));
     }

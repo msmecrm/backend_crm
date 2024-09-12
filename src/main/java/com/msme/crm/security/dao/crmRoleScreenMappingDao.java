@@ -1,6 +1,6 @@
 package com.msme.crm.security.dao;
 
-import jakarta.persistence.Column;
+
 
 public class crmRoleScreenMappingDao {
 

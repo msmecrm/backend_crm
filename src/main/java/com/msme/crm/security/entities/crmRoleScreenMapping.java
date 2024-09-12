@@ -79,5 +79,16 @@ public class crmRoleScreenMapping {
         this.deleteRecord = deleteRecord;
     }
 
-
+    @Override
+    public String toString() {
+        return "crmRoleScreenMapping{" +
+                "id=" + id +
+                ", roleId=" + roleId +
+                ", screenId=" + screenId +
+                ", viewRecord=" + viewRecord +
+                ", CreateRecord=" + CreateRecord +
+                ", editRecord=" + editRecord +
+                ", deleteRecord=" + deleteRecord +
+                '}';
+    }
 }
