@@ -44,7 +44,7 @@ public class CRMUsers implements UserDetails {
     @Column
     private Integer ManagerID;
     @Column
-    private boolean userStatus;
+    private boolean userStatus = true;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST })
     @JoinTable(name = "CRMUSER_ROLE_MAPPING", joinColumns = @JoinColumn(name = "id"),

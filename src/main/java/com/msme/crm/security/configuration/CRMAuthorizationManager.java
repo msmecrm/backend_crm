@@ -86,8 +86,7 @@ public class CRMAuthorizationManager implements AuthorizationManager<RequestAuth
 
         String ScreenName = requestUrl;
 
-        if(lastBackSlashPosition>0)
-        {
+        if(lastBackSlashPosition>0) {
          ScreenName = requestUrl.substring(0,lastBackSlashPosition);
         }
 
